@@ -30,7 +30,7 @@ This is a simple messaging website where two individuals will be able to have a 
 
 #### Entity Relationship Diagram
 
-![ERD](https://i.imgur.com/hSetA65.png)
+![ERD](https://i.imgur.com/ctLooZd.png)
 
 #### Component Heirarchy Diagram
 
