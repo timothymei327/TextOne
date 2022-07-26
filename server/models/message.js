@@ -1,10 +1,10 @@
-const { Schema } = require('mongoose')
+const { Schema, default: mongoose } = require('mongoose')
 
 const messageSchema = new Schema(
   {
-    body: { type: Text, required: true }
-    // owner: reference Object ID (user)
-    //chat: reference ID (chat)
+    body: { type: String, required: true },
+    owner: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
+    chat: { type: mongoose.Schema.Types.ObjectId, ref: 'Chat' }
   },
   { timestamps: true }
 )
