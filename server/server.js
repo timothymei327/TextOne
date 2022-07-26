@@ -41,6 +41,11 @@ app.post('/users', async (req, res) => {
   res.json(newUser)
 })
 
+app.put('/users', async (req, res) => {
+  let modifyUser = await User.updateMany({}, req.body)
+  res.json(modifyUser)
+})
+
 app.delete('/users', async (req, res) => {
   let deleteUsers = await User.deleteMany()
   res.json(deleteUsers)
