@@ -1,14 +1,17 @@
+const db = require('./db')
 const express = require('express')
 const cors = require('cors')
+const routes = require('./routes')
 const http = require('http')
 const { Server } = require('socket.io')
-const db = require('./db')
 const { User } = require('./models')
 
 const PORT = process.env.PORT || 3001
 const app = express()
 const server = http.createServer(app)
 app.use(cors())
+app.use(express.json())
+app.use(express.urlencoded({ extended: false }))
 
 const io = new Server(server, {
   cors: {
@@ -30,6 +33,17 @@ app.get('/users/:id', async (req, res) => {
   const { id } = req.params
   const user = await User.findById(id)
   res.json(user)
+})
+
+app.post('/users', async (req, res) => {
+  console.log(req.body)
+  let newUser = await User.create(req.body)
+  res.json(newUser)
+})
+
+app.delete('/users', async (req, res) => {
+  let deleteUsers = await User.deleteMany()
+  res.json(deleteUsers)
 })
 
 app.listen(PORT, () => {
