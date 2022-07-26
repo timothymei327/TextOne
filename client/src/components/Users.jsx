@@ -6,6 +6,7 @@ const BASE_URL = 'http://localhost:3001'
 
 const Users = () => {
   const [users, setUsers] = useState([])
+  const [update, setUpdate] = useState('')
 
   useEffect(() => {
   const getUsers = async () => {
@@ -15,14 +16,25 @@ const Users = () => {
     setUsers(res.data)
   }
     getUsers()
-  }, [])
+  }, [update])
+
+
+  //move to chats page when ready
+  const deleteAccounts = async (event) => {
+    // event.preventDefault() <--- prevents refresh so name doesnt auto update
+    setUpdate('1')
+    await axios.delete(`${BASE_URL}/users`)
+  }
 
 return (
+<div>
   <div className='user-list'>
     { users ? users.map((user) => (
       <div>{user.username}</div>
     )) : '' }
   </div>
+  <button onClick={deleteAccounts}>Delete Account</button>
+</div>
 )
 }
 

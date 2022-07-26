@@ -7,7 +7,6 @@ function Home() {
     <div className="home">
       <div>
         <UserForm />
-        <Users />
       </div>
     </div>
   )
