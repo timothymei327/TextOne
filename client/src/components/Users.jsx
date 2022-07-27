@@ -19,7 +19,7 @@ const Users = () => {
   }, [update])
 
 
-  //move to chats page when ready
+  //move to chats page with delete chats button when ready 
   const deleteAccounts = async (event) => {
     // event.preventDefault() <--- prevents refresh so name doesnt auto update
     setUpdate('1')

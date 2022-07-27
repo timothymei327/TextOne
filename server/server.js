@@ -75,11 +75,15 @@ app.post('/chats', async (req, res) => {
   res.json(newChat)
 })
 
-//YOU ARE HERE DOING THIS
-// app.put('/users', async (req, res) => {
-//   let modifyUser = await User.updateMany({}, req.body)
-//   res.json(modifyUser)
-// })
+app.put('/chats', async (req, res) => {
+  let modifyChat = await Chat.updateMany({}, req.body)
+  res.json(modifyChat)
+})
+
+app.delete('/chats', async (req, res) => {
+  let deleteChats = await Chat.deleteMany()
+  res.json(deleteChats)
+})
 
 server.listen(PORT, () => {
   console.log(`socket io server listening on port ${PORT}`)

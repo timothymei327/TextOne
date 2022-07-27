@@ -6,7 +6,7 @@ import Chats from './Chats'
 const BASE_URL = 'http://localhost:3001'
 
 function ChatForm() {
-  // let navigate = useNavigate()
+  let navigate = useNavigate()
 
   const initialState = { name: '' };
   const [formState, setFormState] = useState(initialState);
@@ -26,7 +26,7 @@ function ChatForm() {
     console.log(res)
     // clear the form
     setFormState(initialState);
-    // navigate(`/chat`)
+    navigate(`/chat-page`)
     //prob change to chat id later when integrating chat rooms
   };
   // Note that we need to use `htmlFor` instead of `for` in JSX
@@ -37,7 +37,7 @@ function ChatForm() {
 
   const submitModificaiton = async (event) => {
     event.preventDefault()
-    let res = await axios.put(`${BASE_URL}/chat`, modification)
+    let res = await axios.put(`${BASE_URL}/chats`, modification)
     console.log(res)
     setModification(initialState)
   }

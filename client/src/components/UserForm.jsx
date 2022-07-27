@@ -6,7 +6,7 @@ import Users from './Users'
 const BASE_URL = 'http://localhost:3001'
 
 function UserForm() {
-  // let navigate = useNavigate()
+  let navigate = useNavigate()
 
   const initialState = { username: '', image:'' };
   const [formState, setFormState] = useState(initialState);
@@ -26,7 +26,7 @@ function UserForm() {
     console.log(res)
     // clear the form
     setFormState(initialState);
-    // navigate(`/chat`)
+    navigate(`/chat-form`)
     //prob change to chat id later when integrating chat rooms
   };
   // Note that we need to use `htmlFor` instead of `for` in JSX

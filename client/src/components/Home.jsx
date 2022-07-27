@@ -8,7 +8,6 @@ function Home() {
     <div className="home">
       <div>
         <UserForm />
-        <ChatForm />
       </div>
     </div>
   )
