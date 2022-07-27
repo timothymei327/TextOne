@@ -2,10 +2,11 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import Chats from './Chats'
-import Users from './Users';
 import { useEffect } from 'react';
+import {io} from 'socket.io-client'
 
 const BASE_URL = 'http://localhost:3001'
+const socket = io.connect('http://localhost:3001')
 
 function ChatForm() {
   let navigate = useNavigate()
@@ -13,7 +14,12 @@ function ChatForm() {
   const initialState = { name: '' };
   const [formState, setFormState] = useState(initialState);
   const [modification, setModification] = useState(initialState)
-  const [user, setUser] = useState([])
+  const [user, setUser] = useState('')
+
+  const enterChat = () => {
+    if (formState.name !== '')
+    socket.emit('join_room', formState.name)
+  }
 
   const handleChange = event => {
     setFormState({ ...formState, [event.target.id]: event.target.value });
@@ -21,16 +27,19 @@ function ChatForm() {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+    enterChat()
     // do something with the data in the component state
     console.log(formState);
     //await
+    let chats = await axios.get(`${BASE_URL}/chats`)
+    if (chats.data.length == 0 ){
     let res = await axios.post(`${BASE_URL}/chats`, formState)
     console.log(res)
     // clear the form
     setFormState(initialState);
     navigate(`/chat-page`)
     //prob change to chat id later when integrating chat rooms
-  };
+  }}
   // Note that we need to use `htmlFor` instead of `for` in JSX
 
   const changeModification = async (event) => {
@@ -51,8 +60,6 @@ useEffect(() => {
   }
   displayUser()
 }, [])
-
-console.log(user)
 
 
 

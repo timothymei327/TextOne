@@ -33,7 +33,7 @@ return (
       <div>{chat.name}</div>
     )) : '' }
   </div>
-  <button onClick={deleteChats}>Delete Chats</button>
+  <button onClick={deleteChats}>Exit Chat</button>
 </div>
 )
 }
