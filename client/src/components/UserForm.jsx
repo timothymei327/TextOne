@@ -1,10 +1,13 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import Users from './Users'
 
 const BASE_URL = 'http://localhost:3001'
 
 function UserForm() {
+  let navigate = useNavigate()
+
   const initialState = { username: '', image:'' };
   const [formState, setFormState] = useState(initialState);
 
@@ -23,6 +26,8 @@ function UserForm() {
     console.log(res)
     // clear the form
     setFormState(initialState);
+    navigate(`/chat`)
+    //prob change to chat id later when integrating chat rooms
   };
   // Note that we need to use `htmlFor` instead of `for` in JSX
 

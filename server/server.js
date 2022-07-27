@@ -4,7 +4,7 @@ const cors = require('cors')
 const routes = require('./routes')
 const http = require('http')
 const { Server } = require('socket.io')
-const { User } = require('./models')
+const { User, Chat } = require('./models')
 
 const PORT = process.env.PORT || 3001
 const app = express()
@@ -18,6 +18,19 @@ const io = new Server(server, {
     origin: 'http://localhost:3000',
     methods: ['GET', 'POST', 'PUT', 'DELETE']
   }
+})
+
+io.on('connection', (socket) => {
+  console.log(`User connected: ${socket.id}`)
+
+  socket.on('send_message', (data) => {
+    console.log(data)
+    socket.broadcast.emit('receive_message', data)
+  })
+
+  socket.on('disconnect', () => {
+    console.log(`User Disconnected: ${socket.id}`)
+  })
 })
 
 app.get('/', (req, res) => {
@@ -36,7 +49,7 @@ app.get('/users/:id', async (req, res) => {
 })
 
 app.post('/users', async (req, res) => {
-  console.log(req.body)
+  // console.log(req.body)
   let newUser = await User.create(req.body)
   res.json(newUser)
 })
@@ -51,6 +64,6 @@ app.delete('/users', async (req, res) => {
   res.json(deleteUsers)
 })
 
-app.listen(PORT, () => {
-  console.log(`Express server listening on port ${PORT}`)
+server.listen(PORT, () => {
+  console.log(`socket io server listening on port ${PORT}`)
 })
