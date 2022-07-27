@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import Users from './Users'
+import Chats from './Chats'
 
 const BASE_URL = 'http://localhost:3001'
 
-function UserForm() {
+function ChatForm() {
   // let navigate = useNavigate()
 
-  const initialState = { username: '', image:'' };
+  const initialState = { name: '' };
   const [formState, setFormState] = useState(initialState);
 
   const [modification, setModification] = useState(initialState)
@@ -22,7 +22,7 @@ function UserForm() {
     // do something with the data in the component state
     console.log(formState);
     //await
-    let res = await axios.post(`${BASE_URL}/users`, formState)
+    let res = await axios.post(`${BASE_URL}/chats`, formState)
     console.log(res)
     // clear the form
     setFormState(initialState);
@@ -37,7 +37,7 @@ function UserForm() {
 
   const submitModificaiton = async (event) => {
     event.preventDefault()
-    let res = await axios.put(`${BASE_URL}/users`, modification)
+    let res = await axios.put(`${BASE_URL}/chat`, modification)
     console.log(res)
     setModification(initialState)
   }
@@ -45,31 +45,22 @@ function UserForm() {
   return (
   <div>
     <form onSubmit={handleSubmit}>
-      <label htmlFor="username">Username:</label>
+      <label htmlFor="name">Name:</label>
       <input
-        id="username"
+        id="name"
         type="text"
         onChange={handleChange}
-        value={formState.username}
-        />
-      <label htmlFor="image">Image Link:</label>
-      <input
-        id="image"
-        type="text"
-        onChange={handleChange}
-        value={formState.image}
+        value={formState.name}
         />
       <button type="submit">Login</button>
     </form>
     <form onSubmit={submitModificaiton}>
       <label>Update Username:</label>
-      <input id="username" type="text" onChange={changeModification} value={modification.username}/>
-      <label>Update Image Link:</label>
-      <input id="image" type="text" onChange={changeModification} value={modification.image}/>
+      <input id="name" type="text" onChange={changeModification} value={modification.username}/>
       <button type="submit">Update</button>
     </form>
-    <Users />
+    <Chats />
   </div>
   );
 }
-export default UserForm;
+export default ChatForm;

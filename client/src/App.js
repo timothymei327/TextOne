@@ -2,7 +2,7 @@ import './App.css'
 import { Routes, Route } from 'react-router-dom'
 import Home from './components/Home'
 import Users from './components/Users'
-import Chat from './components/Chat'
+import Chat from './components/ChatPage'
 
 function App() {
   return (
@@ -11,7 +11,6 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />}></Route>
           <Route path="/users" element={<Users />}></Route>
-          <Route path="/chat" element={<Chat />}></Route>
         </Routes>
       </main>
     </div>

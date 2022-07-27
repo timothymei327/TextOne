@@ -64,6 +64,23 @@ app.delete('/users', async (req, res) => {
   res.json(deleteUsers)
 })
 
+app.get('/chats', async (req, res) => {
+  const chats = await Chat.find({})
+  res.json(chats)
+})
+
+app.post('/chats', async (req, res) => {
+  // console.log(req.body)
+  let newChat = await Chat.create(req.body)
+  res.json(newChat)
+})
+
+//YOU ARE HERE DOING THIS
+// app.put('/users', async (req, res) => {
+//   let modifyUser = await User.updateMany({}, req.body)
+//   res.json(modifyUser)
+// })
+
 server.listen(PORT, () => {
   console.log(`socket io server listening on port ${PORT}`)
 })
