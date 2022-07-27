@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import Chats from './Chats'
+import Users from './Users';
+import { useEffect } from 'react';
 
 const BASE_URL = 'http://localhost:3001'
 
@@ -10,8 +12,8 @@ function ChatForm() {
 
   const initialState = { name: '' };
   const [formState, setFormState] = useState(initialState);
-
   const [modification, setModification] = useState(initialState)
+  const [user, setUser] = useState([])
 
   const handleChange = event => {
     setFormState({ ...formState, [event.target.id]: event.target.value });
@@ -42,10 +44,23 @@ function ChatForm() {
     setModification(initialState)
   }
 
+useEffect(() => {
+  const displayUser = async(req, res) => {
+    let currentUser = await axios.get(`${BASE_URL}/users`)
+    setUser(currentUser.data[0].username)
+  }
+  displayUser()
+}, [])
+
+console.log(user)
+
+
+
   return (
   <div>
+    <h1>Welcome, {user} what will your chat name be?</h1>
     <form onSubmit={handleSubmit}>
-      <label htmlFor="name">Name:</label>
+      <label htmlFor="name">Chat Name:</label>
       <input
         id="name"
         type="text"
@@ -55,7 +70,7 @@ function ChatForm() {
       <button type="submit">Login</button>
     </form>
     <form onSubmit={submitModificaiton}>
-      <label>Update Username:</label>
+      <label>Update Chat Name:</label>
       <input id="name" type="text" onChange={changeModification} value={modification.username}/>
       <button type="submit">Update</button>
     </form>

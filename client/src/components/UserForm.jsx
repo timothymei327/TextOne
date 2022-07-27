@@ -22,13 +22,15 @@ function UserForm() {
     // do something with the data in the component state
     console.log(formState);
     //await
+    let users = await axios.get(`${BASE_URL}/users`)
+    if (users.data.length == 0 ){
     let res = await axios.post(`${BASE_URL}/users`, formState)
     console.log(res)
     // clear the form
     setFormState(initialState);
     navigate(`/chat-form`)
     //prob change to chat id later when integrating chat rooms
-  };
+  }}
   // Note that we need to use `htmlFor` instead of `for` in JSX
 
   const changeModification = async (event) => {

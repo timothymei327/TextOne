@@ -33,7 +33,7 @@ return (
       <div>{user.username}</div>
     )) : '' }
   </div>
-  <button onClick={deleteAccounts}>Delete Account</button>
+  <button onClick={deleteAccounts}>Log Out</button>
 </div>
 )
 }
