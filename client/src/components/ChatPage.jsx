@@ -3,49 +3,36 @@ import axios from 'axios'
 
 const BASE_URL = 'http://localhost:3001'
 
-const ChatPage = (props) => {
+const ChatPage = () => {
 
-const [message, setMessage] = useState('')
-const [messageList, setMessageList] = useState ([{room: '', sender: '', message: '', time: ''}])
+const [message, setMessage] = useState({body: ''})
+// const [messageList, setMessageList] = useState ([{room: '', sender: '', message: '', time: ''}])
 console.log(messageList)
 
-let socket = props.socket
 
   const handleChange = (event) => {
-    setMessage( event.target.value );
+    setMessage( { ...message, [event.target.id]: event.target.value } );
   };
 
   const sendMessage = async () => {
     if (message !== '') {
-      let chats = await axios.get(`${BASE_URL}/chats`)
-      let roomName = chats.data[0].name
-      console.log(roomName)
-      let senderName = await axios.get(`${BASE_URL}/users`)
-      let username = senderName.data[0].username
-      console.log(username)
 
-      const messageInfo = {
-        room: roomName,
-        sender: username,
-        message: message,
-        time: new Date(Date.now()).getHours() + ':' + new Date(Date.now()).getMinutes()
+      let sendMsg = await axios.post(`${BASE_URL}/messages`, message)
+      
+    }}
+
+    useEffect(() => {
+      renderMessages = () => {
+        let messages = await axios.get(`${BASE_URL}/messages`)
       }
+    }, [])
 
-      console.log(messageInfo)
-
-      await socket.emit('send_message', messageInfo)
-      setMessageList((list) => [...list, messageInfo])
-    //  clear the form
-     setMessage('');
-  }}
-  
-useEffect(() => {
-  socket.on('receive_message', (data) => {
-    //create received text bubble
-    setMessageList((list) => [...list, data])
-    // alert(data.message)
-  })
-}, [socket])
+      // const messageInfo = {
+      //   room: roomName,
+      //   sender: username,
+      //   message: message,
+      //   time: new Date(Date.now()).getHours() + ':' + new Date(Date.now()).getMinutes()
+      // }}
 
   return (
     <div>
@@ -55,7 +42,7 @@ useEffect(() => {
       <div className="chat-header">
       </div>
       <div className="chat-body">
-        {console.log(messageList)}
+        {/* {console.log(messageList)}
         {messageList.map((msg) => {
           return (
             <div className="message">
@@ -68,7 +55,7 @@ useEffect(() => {
               </div>
             </div>
           )
-        })}
+        })} */}
       </div>
       <div className="chat-footer">
       <input type="text" placeholder="Message" onChange={handleChange} value={message}/>

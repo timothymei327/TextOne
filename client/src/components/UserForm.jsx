@@ -22,7 +22,7 @@ function UserForm() {
     // do something with the data in the component state
     console.log(formState);
     //await
-    let users = await axios.get(`${BASE_URL}/users`)
+    // let users = await axios.get(`${BASE_URL}/users`)
     // if (users.data.length == 0 ){
     let res = await axios.post(`${BASE_URL}/users`, formState)
     console.log(res)
@@ -34,19 +34,21 @@ function UserForm() {
 // }
   // Note that we need to use `htmlFor` instead of `for` in JSX
 
-  const changeModification = async (event) => {
-    setModification({...modification, [event.target.id]: event.target.value})
-  }
+  // const changeModification = async (event) => {
+  //   setModification({...modification, [event.target.id]: event.target.value})
+  // }
 
-  const submitModificaiton = async (event) => {
-    event.preventDefault()
-    let res = await axios.put(`${BASE_URL}/users`, modification)
-    console.log(res)
-    setModification(initialState)
-  }
+  // const submitModificaiton = async (event) => {
+  //   event.preventDefault()
+  //   let res = await axios.put(`${BASE_URL}/users`, modification)
+  //   console.log(res)
+  //   setModification(initialState)
+  // }
 
   return (
   <div>
+    <h1>TextOne</h1>
+    <h3>Create a username and add a link to your profile picture!</h3>
     <form onSubmit={handleSubmit}>
       <label htmlFor="username">Username:</label>
         <input
@@ -64,13 +66,13 @@ function UserForm() {
         />
       <button type="submit">Login</button>
     </form>
-    <form onSubmit={submitModificaiton}>
+    {/* <form onSubmit={submitModificaiton}>
       <label>Update Username:</label>
       <input id="username" type="text" onChange={changeModification} value={modification.username}/>
       <label>Update Image Link:</label>
       <input id="image" type="text" onChange={changeModification} value={modification.image}/>
       <button type="submit">Update</button>
-    </form>
+    </form> */}
     <Users />
   </div>
   );
