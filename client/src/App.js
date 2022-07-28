@@ -6,7 +6,10 @@ import ChatPage from './components/ChatPage'
 import { io } from 'socket.io-client'
 
 function App() {
-  const socket = io.connect('/')
+  const socket = io.connect([
+    'http://localhost:3001',
+    'https://rocky-cove-33984.herokuapp.com/'
+  ])
 
   return (
     <div className="App">
