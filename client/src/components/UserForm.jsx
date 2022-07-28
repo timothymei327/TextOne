@@ -49,18 +49,18 @@ function UserForm() {
   <div>
     <form onSubmit={handleSubmit}>
       <label htmlFor="username">Username:</label>
-      <input
-        id="username"
-        type="text"
-        onChange={handleChange}
-        value={formState.username}
+        <input
+          id="username"
+          type="text"
+          onChange={handleChange}
+          value={formState.username}
         />
       <label htmlFor="image">Image Link:</label>
-      <input
-        id="image"
-        type="text"
-        onChange={handleChange}
-        value={formState.image}
+        <input
+          id="image"
+          type="text"
+          onChange={handleChange}
+          value={formState.image}
         />
       <button type="submit">Login</button>
     </form>

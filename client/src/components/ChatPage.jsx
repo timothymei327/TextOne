@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import io from 'socket.io-client'
 import axios from 'axios'
 
 const BASE_URL = 'http://localhost:3001'
@@ -74,7 +73,6 @@ useEffect(() => {
       <div className="chat-footer">
       <input type="text" placeholder="Message" onChange={handleChange} value={message}/>
       <button onClick={sendMessage}>send</button>
-      input needs onChange and onSubmit
       </div>
     </div>
   )

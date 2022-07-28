@@ -3,7 +3,6 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import Chats from './Chats'
 import { useEffect } from 'react';
-// import {io} from 'socket.io-client'
 
 const BASE_URL = 'http://localhost:3001'
 
@@ -16,10 +15,10 @@ function ChatForm(props) {
   const [modification, setModification] = useState(initialState)
   const [user, setUser] = useState('')
 
-  const enterChat = () => {
-    if (formState.name !== '')
-    socket.emit('join_room', formState.name)
-  }
+  // const enterChat = () => {
+  //   if (formState.name !== '')
+  //   socket.emit('join_room', formState.name)
+  // }
 
   const handleChange = event => {
     setFormState({ ...formState, [event.target.id]: event.target.value });
@@ -27,7 +26,7 @@ function ChatForm(props) {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    enterChat()
+    // enterChat()
     // do something with the data in the component state
     console.log(formState);
     //await
