@@ -16,7 +16,7 @@ app.use(express.static(`${__dirname}/client/build`))
 
 const io = new Server(server, {
   cors: {
-    origin: 'https://rocky-cove-33984.herokuapp.com/',
+    origin: 'http://localhost:3000',
     methods: ['GET', 'POST', 'PUT', 'DELETE']
   }
 })

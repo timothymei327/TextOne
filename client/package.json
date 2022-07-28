@@ -14,7 +14,7 @@
     "socket.io-client": "^4.5.1",
     "web-vitals": "^2.1.4"
   },
-  "proxy": "https://rocky-cove-33984.herokuapp.com/",
+  "proxy": "http://localhost:3001",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
