@@ -1,14 +1,14 @@
 const db = require('./db')
 const express = require('express')
+const app = express()
 const cors = require('cors')
 const routes = require('./routes')
-const http = require('http')
+
 const { Server } = require('socket.io')
 const { User, Chat } = require('./models')
 
 const PORT = process.env.PORT || 3001
-const app = express()
-const server = http.createServer(app)
+const server = require('http').Server(app)
 app.use(cors())
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }))

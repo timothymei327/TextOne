@@ -6,7 +6,7 @@ import ChatPage from './components/ChatPage'
 import { io } from 'socket.io-client'
 
 function App() {
-  const socket = io.connect('http://localhost:3001')
+  const socket = io.connect('/')
 
   return (
     <div className="App">
