@@ -74,6 +74,11 @@ app.delete('/chats', async (req, res) => {
   res.json(deleteChats)
 })
 
+app.delete('/messages', async (req, res) => {
+  let deleteMessages = await Message.deleteMany()
+  res.json(deleteMessages)
+})
+
 app.get('/*', (req, res) => {
   res.sendFile(`${__dirname}/client/build/index.html`)
 })
