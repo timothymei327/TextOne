@@ -4,25 +4,25 @@ import axios from 'axios'
 const BASE_URL = 'http://localhost:3001'
 
 const ChatPage = () => {
-
-const [message, setMessage] = useState({body: ''})
+const [message, setMessage] = useState('')
 // const [messageList, setMessageList] = useState ([{room: '', sender: '', message: '', time: ''}])
-console.log(messageList)
-
+// console.log(messageList)
 
   const handleChange = (event) => {
-    setMessage( { ...message, [event.target.id]: event.target.value } );
+    setMessage( event.target.value );
   };
 
-  const sendMessage = async () => {
+  const sendMessage = async (event) => {
+    event.preventDefault()
     if (message !== '') {
-
-      let sendMsg = await axios.post(`${BASE_URL}/messages`, message)
-      
-    }}
+      let res = await axios.post(`${BASE_URL}/messages`, {body: message})
+      console.log(res)
+      setMessage('')
+    }
+  }
 
     useEffect(() => {
-      renderMessages = () => {
+     const renderMessages = async() => {
         let messages = await axios.get(`${BASE_URL}/messages`)
       }
     }, [])
@@ -58,7 +58,7 @@ console.log(messageList)
         })} */}
       </div>
       <div className="chat-footer">
-      <input type="text" placeholder="Message" onChange={handleChange} value={message}/>
+      <input id="body" type="text" placeholder="Message" onChange={handleChange} value={message}/>
       <button onClick={sendMessage}>send</button>
       </div>
     </div>

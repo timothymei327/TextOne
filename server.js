@@ -40,7 +40,7 @@ app.post('/users', async (req, res) => {
 app.post('/messages', async (req, res) => {
   // console.log(req.body)
   let newMsg = await Message.create(req.body)
-  res.json(newUser)
+  res.json(newMsg)
 })
 
 app.put('/users', async (req, res) => {
