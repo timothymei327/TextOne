@@ -1,7 +1,12 @@
 const mongoose = require('mongoose')
 
+let dbUrl =
+  process.env.NODE_ENV === 'production'
+    ? process.env.MONGODB_URI
+    : 'mongodb://127.0.0.1:27017/textOneDatabase'
+
 mongoose
-  .connect('mongodb://127.0.0.1:27017/textOneDatabase')
+  .connect(dbUrl)
   .then(() => {
     console.log('Successfully connected to MongoDB.')
   })

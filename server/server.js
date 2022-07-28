@@ -12,6 +12,7 @@ const server = http.createServer(app)
 app.use(cors())
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
+app.use(express.static(`${__dirname}/client/build`))
 
 const io = new Server(server, {
   cors: {
@@ -88,6 +89,10 @@ app.put('/chats', async (req, res) => {
 app.delete('/chats', async (req, res) => {
   let deleteChats = await Chat.deleteMany()
   res.json(deleteChats)
+})
+
+app.get('/*', (req, res) => {
+  res.sendFile(`${__dirname}/client/build/index.html`)
 })
 
 server.listen(PORT, () => {
