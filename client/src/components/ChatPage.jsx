@@ -3,14 +3,14 @@ import io from 'socket.io-client'
 import axios from 'axios'
 
 const BASE_URL = 'http://localhost:3001'
-const socket = io.connect('http://localhost:3001')
 
-const ChatPage = () => {
+const ChatPage = (props) => {
 
 const [message, setMessage] = useState('')
-const [update, setUpdate] = useState('')
-// const [roomName, setRoomName] = useState('')
-// const [username, setUsername] = useState('')
+const [messageList, setMessageList] = useState ([{room: '', sender: '', message: '', time: ''}])
+console.log(messageList)
+
+let socket = props.socket
 
   const handleChange = (event) => {
     setMessage( event.target.value );
@@ -31,15 +31,19 @@ const [update, setUpdate] = useState('')
         message: message,
         time: new Date(Date.now()).getHours() + ':' + new Date(Date.now()).getMinutes()
       }
+
+      console.log(messageInfo)
+
       await socket.emit('send_message', messageInfo)
-     // clear the form
+      setMessageList((list) => [...list, messageInfo])
+    //  clear the form
      setMessage('');
   }}
   
 useEffect(() => {
   socket.on('receive_message', (data) => {
     //create received text bubble
-    console.log(data)
+    setMessageList((list) => [...list, data])
     // alert(data.message)
   })
 }, [socket])
@@ -51,7 +55,22 @@ useEffect(() => {
       </div>
       <div className="chat-header">
       </div>
-      <div className="chat-body"></div>
+      <div className="chat-body">
+        {console.log(messageList)}
+        {messageList.map((msg) => {
+          return (
+            <div className="message">
+              <div className="message-content">
+                <p>{msg.message}</p>
+              </div>
+              <div className="message-meta">
+                <p>{msg.sender} </p>
+                <p>{msg.time}</p>
+              </div>
+            </div>
+          )
+        })}
+      </div>
       <div className="chat-footer">
       <input type="text" placeholder="Message" onChange={handleChange} value={message}/>
       <button onClick={sendMessage}>send</button>

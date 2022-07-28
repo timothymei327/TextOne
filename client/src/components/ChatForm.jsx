@@ -3,13 +3,13 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import Chats from './Chats'
 import { useEffect } from 'react';
-import {io} from 'socket.io-client'
+// import {io} from 'socket.io-client'
 
 const BASE_URL = 'http://localhost:3001'
-const socket = io.connect('http://localhost:3001')
 
-function ChatForm() {
+function ChatForm(props) {
   let navigate = useNavigate()
+  let socket=props.socket
 
   const initialState = { name: '' };
   const [formState, setFormState] = useState(initialState);
