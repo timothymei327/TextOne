@@ -95,6 +95,6 @@ app.get('/*', (req, res) => {
   res.sendFile(`${__dirname}/client/build/index.html`)
 })
 
-server.listen(PORT, () => {
+app.listen(PORT, () => {
   console.log(`socket io server listening on port ${PORT}`)
 })
