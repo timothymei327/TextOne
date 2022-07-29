@@ -10,6 +10,7 @@ const ChatPage = () => {
 const [message, setMessage] = useState('')
 const [msgs, setMsgs] = useState([])
 const [users, setUsers] = useState([])
+const [chats, setChats] = useState([])
 const [profileImg, setProfileImg] = useState([])
 const [update, setUpdate] = useState('')
 const [modification, setModification] = useState('')
@@ -77,6 +78,15 @@ const [response, setResponse] = useState('')
       }
         getUsers()
       }, [update])
+
+      useEffect(() => {
+        const displayChat = async(req, res) => {
+          let currentChat = await axios.get(`${BASE_URL}/chats`)
+          let recentChatIndex = currentChat.data.length - 1
+          setChats(currentChat.data[recentChatIndex].name)
+        }
+        displayChat()
+      }, [])
   
   
     //move to chats page with delete chats button when ready 
@@ -100,7 +110,8 @@ const [response, setResponse] = useState('')
           </div>
         </div>
         <div className="chat-header">
-            <button onClick={clearMessages}>Clear Chat</button>
+          ●
+          <div className="chat-header-name">{chats}</div>
         </div>
         <div className="chat-body">
               { msgs ? msgs.map((msg) => (
@@ -125,6 +136,7 @@ const [response, setResponse] = useState('')
           <input id="body" type="text" placeholder="Edit Messages" onChange={changeModification} onSubmit={submitModificaiton} value={modification}/>
           <button type="submit" onClick={submitModificaiton}>submit</button>
         </form> */}
+          <button onClick={clearMessages}>Clear Chat</button>
       </div>
     </div>
   )

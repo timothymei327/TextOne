@@ -30,7 +30,7 @@ return (
 <div>
   <div className='user-list'>
     { users ? users.map((user) => (
-      <div>{user.username}</div>
+      <div>Current User: {user.username}</div>
     )) : '' }
   </div>
   <button onClick={deleteAccounts}>Log Out</button>

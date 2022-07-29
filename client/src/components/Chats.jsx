@@ -30,7 +30,7 @@ return (
 <div>
   <div className='chat-list'>
     { chats ? chats.map((chat) => (
-      <div>{chat.name}</div>
+      <div>Current Chat Room: {chat.name}</div>
     )) : '' }
   </div>
   <button onClick={deleteChats}>Exit Chat</button>
