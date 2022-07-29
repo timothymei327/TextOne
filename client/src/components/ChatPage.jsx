@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import axios from 'axios'
 import Users from "./Users";
 import UserForm from "./UserForm";
+const randomWords = require('random-words')
 
 const BASE_URL = 'http://localhost:3001'
 
@@ -12,18 +13,28 @@ const [users, setUsers] = useState([])
 const [profileImg, setProfileImg] = useState([])
 const [update, setUpdate] = useState('')
 const [modification, setModification] = useState('')
+const [modificationId, setModificationId] = useState('')
+const [response, setResponse] = useState('')
 
   const handleChange = (event) => {
     setMessage( event.target.value );
   };
 
+    const botResponse = async () => {
+      let wordsArr = randomWords({ min: 2, max: 15 })
+      let sentence = wordsArr.join(' ')
+      setResponse(sentence)
+      await axios.post(`${BASE_URL}/messages`, {body: sentence, sender: 'sender-bot'})
+    }
+
   const sendMessage = async (event) => {
     event.preventDefault()
     if (message !== '') {
-      let res = await axios.post(`${BASE_URL}/messages`, {body: message})
+      let res = await axios.post(`${BASE_URL}/messages`, {body: message, sender: 'sender-user'})
       console.log(res)
       setMessage('')
       setUpdate(Math.random())
+      botResponse()
     }
   }
 
@@ -33,9 +44,18 @@ const [modification, setModification] = useState('')
 
   const submitModificaiton = async (event) => {
     event.preventDefault()
-    let res = await axios.put(`${BASE_URL}/messages`, {body: modification})
-    console.log(res)
-    setModification('')
+    if (modificationId == '') {
+      let res = await axios.put(`${BASE_URL}/messages`, {body: modification})
+      console.log(res)
+      setModification('')
+    } else {
+      let res = await axios.put(`${BASE_URL}/messages/:${modificationId}`, {id: modificationId,
+      body: modification, new: true})
+    }
+  }
+
+    const changeModificationId = (event) => {
+    setModificationId( event.target.value )
   }
 
     useEffect(() => {
@@ -85,7 +105,7 @@ const [modification, setModification] = useState('')
         <div className="chat-body">
               { msgs ? msgs.map((msg) => (
                 <div>
-                  <div>{msg.body}</div>
+                  <div className={msg.sender}>{msg.body}</div>
                   <div className="msg-id">{msg._id}</div>
                 </div>
                 
@@ -97,9 +117,14 @@ const [modification, setModification] = useState('')
           <button type="submit" onClick={sendMessage}>send</button>
         </form>
         <form>
-          <input id="body" type="text" placeholder="Edit Messages" onChange={changeModification} onSubmit={submitModificaiton} value={modification}/>
+          <input id="message-id" type="text" placeholder="Message ID" onChange={changeModificationId} value={modificationId}/>
+          <input id="message-edit" type="text" placeholder="Edit Messages" onChange={changeModification} onSubmit={submitModificaiton} value={modification}/>
           <button type="submit" onClick={submitModificaiton}>submit</button>
         </form>
+        {/* <form>
+          <input id="body" type="text" placeholder="Edit Messages" onChange={changeModification} onSubmit={submitModificaiton} value={modification}/>
+          <button type="submit" onClick={submitModificaiton}>submit</button>
+        </form> */}
       </div>
     </div>
   )
