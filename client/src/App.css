@@ -134,13 +134,13 @@ body {
 }
 
 #image {
-  width: 270px;
+  width: 290px;
+  display: block;
 }
 
 #name {
   margin: 10px
 }
-
 
 #message-id, #message-edit {
   width: 142px;

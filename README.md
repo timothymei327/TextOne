@@ -22,6 +22,12 @@ This is a simple messaging website where two individuals will be able to have a 
 - MongoDB
 - Mongoose
 
+### _Screenshots_
+
+![Landing_Page](https://i.imgur.com/NNxA8Lt.png)
+![Chat_Form_Page](https://i.imgur.com/aRUCOkk.png)
+![Chat_Page](https://i.imgur.com/jyTOo5b.png)
+
 ### _Getting Started_
 
 #### Trello Board
