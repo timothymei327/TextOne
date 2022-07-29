@@ -37,3 +37,12 @@ This is a simple messaging website where two individuals will be able to have a 
 ![Component_Heriarchy_Diagram](https://i.imgur.com/NYKIZix.png)
 
 ### _Sources_
+
+#### Functional Sources
+
+- [Random_Words_npm_Package](https://www.npmjs.com/package/random-words)
+
+#### Creative Sources
+
+- [Google_Fonts](https://fonts.google.com/specimen/Inter?query=inter)
+- [Scrollable_Window](https://stackoverflow.com/questions/21998679/css-how-to-make-scrollable-list)
