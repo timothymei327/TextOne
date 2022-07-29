@@ -53,8 +53,8 @@ const [response, setResponse] = useState('')
       console.log(res)
       setModification('')
     } else {
-      let res = await axios.put(`${BASE_URL}/messages/:${modificationId}`, {id: modificationId,
-      body: modification, new: true})
+      let res = await axios.put(`${BASE_URL}/messages/${modificationId}`, {
+      body: modification})
     }
   }
 
@@ -117,13 +117,12 @@ const [response, setResponse] = useState('')
           <div className="chat-header-name">{chats}</div>
         </div>
         <div className="chat-body">
-              { msgs ? msgs.map((msg) => (
-                <div>
-                  <div className={msg.sender}>{msg.body}</div>
-                  <div className="msg-id">{msg._id}</div>
-                </div>
-                
-                )) : '' }
+          { msgs ? msgs.map((msg) => (
+            <div>
+            <div className={msg.sender}>{msg.body}</div>
+            <div className="msg-id">{msg._id}</div>
+            </div>
+          )) : '' }
         </div>
         <div className="chat-footer">
         <form>
@@ -136,9 +135,9 @@ const [response, setResponse] = useState('')
           <button type="submit" onClick={submitModificaiton}>submit</button>
         </form>
           <button onClick={clearMessages}>Clear Chat</button>
+      <UsernameUpdate className="username-update"/>
+      <ChatNameUpdate className="chat-name-update"/>
       </div>
-      <UsernameUpdate />
-      <ChatNameUpdate />
     </div>
   )
 }

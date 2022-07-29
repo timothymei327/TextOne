@@ -15,17 +15,16 @@ const ChatNameUpdate = () => {
 
   const submitModificaiton = async (event) => {
     event.preventDefault()
-    let res = await axios.put(`${BASE_URL}/chats`, modification)
-    console.log(res)
-    setModification(initialState)
+      let res = await axios.put(`${BASE_URL}/chats`, modification)
+      console.log(res)
+      setModification(initialState)
   }
 
 
 return (
     <form onSubmit={submitModificaiton}>
-      <label>Update Chat Name:</label>
-      <input id="name" type="text" onChange={changeModification} value={modification.username}/>
-      <button type="submit">Update</button>
+      <input id="name" className='chat-name-update' type="text" placeholder="Update Chat Name" onChange={changeModification} value={modification.username}/>
+      <button type="submit">Update Chat</button>
     </form> 
 )}
 

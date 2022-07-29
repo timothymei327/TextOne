@@ -35,25 +35,27 @@ function UserForm() {
   return (
   <div className='landing-page'>
     <h1 className='main-title'>TextOne</h1>
-    <h3>Create a username and add a link to your profile picture!</h3>
-    <form onSubmit={handleSubmit}>
-      <label htmlFor="username">Username:</label>
-        <input
-          id="username"
-          type="text"
-          onChange={handleChange}
-          value={formState.username}
-        />
-      <label htmlFor="image">Image Link:</label>
-        <input
-          id="image"
-          type="text"
-          onChange={handleChange}
-          value={formState.image}
-        />
-      <button type="submit">Login</button>
-    </form>
+    <div className='landing-content'>
+      <h3>Create a username and add a link to your profile picture!</h3>
+      <form onSubmit={handleSubmit}>
+        <label htmlFor="username">Username: </label>
+          <input
+            id="username"
+            type="text"
+            onChange={handleChange}
+            value={formState.username}
+            />
+        <label htmlFor="image" className='image-link'>Image Link: </label>
+          <input
+            id="image"
+            type="text"
+            onChange={handleChange}
+            value={formState.image}
+            />
+        <button type="submit">Login</button>
+      </form>
     <Users />
+    </div>
   </div>
   );
 }

@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import Chats from './Chats'
-import UserForm from './UserForm';
 import { useEffect } from 'react';
 
 const BASE_URL = 'http://localhost:3001'
@@ -22,8 +21,8 @@ function ChatForm() {
     event.preventDefault();
 
     //await
-    let chats = await axios.get(`${BASE_URL}/chats`)
-    if (chats.data.length == 0){
+    // let chats = await axios.get(`${BASE_URL}/chats`)
+    // if (chats.data.length == 0){
     let res = await axios.post(`${BASE_URL}/chats`, formState)
     console.log(res)
     // clear the form
@@ -31,7 +30,7 @@ function ChatForm() {
     navigate(`/chat-page`)
     //prob change to chat id later when integrating chat rooms
   }
-}
+// }
 
 useEffect(() => {
   const displayUser = async(req, res) => {
@@ -46,18 +45,20 @@ useEffect(() => {
 
   return (
   <div className='chat-form-page'>
-    <h1>Welcome, {user} what will your chat name be?</h1>
-    <form onSubmit={handleSubmit}>
-      <label htmlFor="name">Chat Name:</label>
-      <input
-        id="name"
-        type="text"
-        onChange={handleChange}
-        value={formState.name}
-        />
-      <button type="submit">Enter</button>
-    </form>
-    <Chats />
+    <div className='chat-form-content'>
+      <h1>Welcome, {user} what will your chat name be?</h1>
+      <form onSubmit={handleSubmit}>
+        <label htmlFor="name">Chat Name:</label>
+        <input
+          id="name"
+          type="text"
+          onChange={handleChange}
+          value={formState.name}
+          />
+        <button type="submit">Enter</button>
+      </form>
+      <Chats />
+    </div>
   </div>
   );
 }

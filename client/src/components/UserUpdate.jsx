@@ -23,11 +23,9 @@ const UsernameUpdate = () => {
 
 return (
   <form onSubmit={submitUserModificaiton}>
-  <label>Update Username:</label>
-  <input id="username" type="text" onChange={changeUser} value={userModification.username}/>
-  <label>Update Image Link:</label>
-  <input id="image" type="text" onChange={changeUser} value={userModification.image}/>
-  <button type="submit">Update</button>
+  <input id="username" type="text" placeholder="Update Username" onChange={changeUser} value={userModification.username}/>
+  <input id="image" type="text" placeholder="Update Image Link" onChange={changeUser} value={userModification.image}/>
+  <button type="submit">Update User</button>
 </form>
 )}
 

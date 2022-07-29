@@ -54,7 +54,9 @@ app.put('/messages', async (req, res) => {
 })
 
 app.put('/messages/:id', async (req, res) => {
-  let modifyMessage = await Message.findByIdAndUpdate(req.body)
+  let modifyMessage = await Message.findByIdAndUpdate(req.params.id, req.body, {
+    new: true
+  })
   console.log(req.body)
   res.json(modifyMessage)
 })
@@ -70,7 +72,7 @@ app.get('/chats', async (req, res) => {
 })
 
 app.post('/chats', async (req, res) => {
-  // console.log(req.body)
+  console.log(req.body)
   let newChat = await Chat.create(req.body)
   res.json(newChat)
 })
