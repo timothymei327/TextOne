@@ -134,6 +134,10 @@ body {
 }
 
 #image {
+  width: 270px;
+}
+
+.update-image-link{
   width: 290px;
   display: block;
 }

@@ -1,7 +1,5 @@
 import { useState, useEffect } from "react";
 import axios from 'axios'
-import Users from "./Users";
-import UserForm from "./UserForm";
 import UsernameUpdate from "./UserUpdate";
 import ChatNameUpdate from "./ChatNameUpdate";
 

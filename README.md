@@ -43,6 +43,10 @@ This is a simple messaging website where you will be able to have a conversation
 
 ![Component_Heriarchy_Diagram](https://i.imgur.com/NYKIZix.png)
 
+### _Future Updates_
+
+There are plans to implement socket.io some time in the future, which would allow two or more indviduals on seperate devices to communicate through this website.
+
 ### _Sources_
 
 #### Functional Sources
