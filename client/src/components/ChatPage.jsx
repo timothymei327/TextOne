@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import axios from 'axios'
 import Users from "./Users";
 import UserForm from "./UserForm";
+import UsernameUpdate from "./UserUpdate";
 import ChatNameUpdate from "./ChatNameUpdate";
 
 const randomWords = require('random-words')
@@ -17,7 +18,6 @@ const [profileImg, setProfileImg] = useState([])
 const [update, setUpdate] = useState('')
 const [modification, setModification] = useState('')
 const [modificationId, setModificationId] = useState('')
-const [userModification, setUserModification] = useState({ username: '', image:'' })
 const [response, setResponse] = useState('')
 
   const handleChange = (event) => {
@@ -60,17 +60,6 @@ const [response, setResponse] = useState('')
 
     const changeModificationId = (event) => {
     setModificationId( event.target.value )
-  }
-
-    const changeUser = async (event) => {
-    setUserModification({...userModification, [event.target.id]: event.target.value})
-  }
-
-  const submitUserModificaiton = async (event) => {
-    event.preventDefault()
-    let res = await axios.put(`${BASE_URL}/users`, userModification)
-    console.log(res)
-    setUserModification({ username: '', image:'' })
   }
 
     useEffect(() => {
@@ -148,13 +137,7 @@ const [response, setResponse] = useState('')
         </form>
           <button onClick={clearMessages}>Clear Chat</button>
       </div>
-      <form onSubmit={submitUserModificaiton}>
-        <label>Update Username:</label>
-        <input id="username" type="text" onChange={changeUser} value={userModification.username}/>
-        <label>Update Image Link:</label>
-        <input id="image" type="text" onChange={changeUser} value={userModification.image}/>
-        <button type="submit">Update</button>
-      </form>
+      <UsernameUpdate />
       <ChatNameUpdate />
     </div>
   )

@@ -12,7 +12,6 @@ function ChatForm() {
 
   const initialState = { name: '' };
   const [formState, setFormState] = useState(initialState);
-  // const [modification, setModification] = useState(initialState)
   const [user, setUser] = useState('')
 
   const handleChange = event => {
