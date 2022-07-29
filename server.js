@@ -2,7 +2,6 @@ const db = require('./db')
 const express = require('express')
 const app = express()
 const cors = require('cors')
-const routes = require('./routes')
 const { User, Chat, Message } = require('./models')
 
 const PORT = process.env.PORT || 3001
