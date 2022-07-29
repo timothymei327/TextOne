@@ -10,7 +10,7 @@
 
 ### _Description_
 
-This is a simple messaging website where two individuals will be able to have a text conversation on their separate devices. This will use MongoDB to help update the backend of the website while using React to update the frontend of the user experience.
+This is a simple messaging website where you will be able to have a conversation with a random text generator. This will use MongoDB, Mongoose, Node, and Express to help update the backend of the website while using React to update the frontend of the user experience.
 
 ### _Technologies Used_
 
@@ -18,6 +18,7 @@ This is a simple messaging website where two individuals will be able to have a 
 - CSS
 - Javascript
 - React
+- NodeJS
 - Express
 - MongoDB
 - Mongoose
