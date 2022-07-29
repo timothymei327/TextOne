@@ -2,6 +2,8 @@ import { useState, useEffect } from "react";
 import axios from 'axios'
 import Users from "./Users";
 import UserForm from "./UserForm";
+import ChatNameUpdate from "./ChatNameUpdate";
+
 const randomWords = require('random-words')
 
 const BASE_URL = 'http://localhost:3001'
@@ -15,6 +17,7 @@ const [profileImg, setProfileImg] = useState([])
 const [update, setUpdate] = useState('')
 const [modification, setModification] = useState('')
 const [modificationId, setModificationId] = useState('')
+const [userModification, setUserModification] = useState({ username: '', image:'' })
 const [response, setResponse] = useState('')
 
   const handleChange = (event) => {
@@ -57,6 +60,17 @@ const [response, setResponse] = useState('')
 
     const changeModificationId = (event) => {
     setModificationId( event.target.value )
+  }
+
+    const changeUser = async (event) => {
+    setUserModification({...userModification, [event.target.id]: event.target.value})
+  }
+
+  const submitUserModificaiton = async (event) => {
+    event.preventDefault()
+    let res = await axios.put(`${BASE_URL}/users`, userModification)
+    console.log(res)
+    setUserModification({ username: '', image:'' })
   }
 
     useEffect(() => {
@@ -132,43 +146,18 @@ const [response, setResponse] = useState('')
           <input id="message-edit" type="text" placeholder="Edit Messages" onChange={changeModification} onSubmit={submitModificaiton} value={modification}/>
           <button type="submit" onClick={submitModificaiton}>submit</button>
         </form>
-        {/* <form>
-          <input id="body" type="text" placeholder="Edit Messages" onChange={changeModification} onSubmit={submitModificaiton} value={modification}/>
-          <button type="submit" onClick={submitModificaiton}>submit</button>
-        </form> */}
           <button onClick={clearMessages}>Clear Chat</button>
       </div>
+      <form onSubmit={submitUserModificaiton}>
+        <label>Update Username:</label>
+        <input id="username" type="text" onChange={changeUser} value={userModification.username}/>
+        <label>Update Image Link:</label>
+        <input id="image" type="text" onChange={changeUser} value={userModification.image}/>
+        <button type="submit">Update</button>
+      </form>
+      <ChatNameUpdate />
     </div>
   )
 }
 
 export default ChatPage
-
-
-
-
-// const [messageList, setMessageList] = useState ([{room: '', sender: '', message: '', time: ''}])
-// console.log(messageList)
-
-// const messageInfo = {
-//   room: roomName,
-//   sender: username,
-//   message: message,
-//   time: new Date(Date.now()).getHours() + ':' + new Date(Date.now()).getMinutes()
-// }}
-
-
-{/* {console.log(messageList)}
-{messageList.map((msg) => {
-  return (
-    <div className="message">
-      <div className="message-content">
-        <p>{msg.message}</p>
-      </div>
-      <div className="message-meta">
-        <p>{msg.sender} </p>
-        <p>{msg.time}</p>
-      </div>
-    </div>
-  )
-})} */}

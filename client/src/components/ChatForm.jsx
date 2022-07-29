@@ -33,16 +33,6 @@ function ChatForm() {
     //prob change to chat id later when integrating chat rooms
   }
 }
-  // const changeModification = async (event) => {
-  //   setModification({...modification, [event.target.id]: event.target.value})
-  // }
-
-  // const submitModificaiton = async (event) => {
-  //   event.preventDefault()
-  //   let res = await axios.put(`${BASE_URL}/chats`, modification)
-  //   console.log(res)
-  //   setModification(initialState)
-  // }
 
 useEffect(() => {
   const displayUser = async(req, res) => {
@@ -68,11 +58,6 @@ useEffect(() => {
         />
       <button type="submit">Enter</button>
     </form>
-    {/* <form onSubmit={submitModificaiton}>
-      <label>Update Chat Name:</label>
-      <input id="name" type="text" onChange={changeModification} value={modification.username}/>
-      <button type="submit">Update</button>
-    </form> */}
     <Chats />
   </div>
   );

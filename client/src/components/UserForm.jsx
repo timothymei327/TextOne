@@ -11,8 +11,6 @@ function UserForm() {
   const initialState = { username: '', image:'' };
   const [formState, setFormState] = useState(initialState);
 
-  const [modification, setModification] = useState(initialState)
-
   const handleChange = event => {
     setFormState({ ...formState, [event.target.id]: event.target.value });
   };
@@ -33,17 +31,6 @@ function UserForm() {
   }
 }
   // Note that we need to use `htmlFor` instead of `for` in JSX
-
-  // const changeModification = async (event) => {
-  //   setModification({...modification, [event.target.id]: event.target.value})
-  // }
-
-  // const submitModificaiton = async (event) => {
-  //   event.preventDefault()
-  //   let res = await axios.put(`${BASE_URL}/users`, modification)
-  //   console.log(res)
-  //   setModification(initialState)
-  // }
 
   return (
   <div className='landing-page'>
@@ -66,13 +53,6 @@ function UserForm() {
         />
       <button type="submit">Login</button>
     </form>
-    {/* <form onSubmit={submitModificaiton}>
-      <label>Update Username:</label>
-      <input id="username" type="text" onChange={changeModification} value={modification.username}/>
-      <label>Update Image Link:</label>
-      <input id="image" type="text" onChange={changeModification} value={modification.image}/>
-      <button type="submit">Update</button>
-    </form> */}
     <Users />
   </div>
   );
