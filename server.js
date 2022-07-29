@@ -48,6 +48,11 @@ app.put('/users', async (req, res) => {
   res.json(modifyUser)
 })
 
+app.put('/messages', async (req, res) => {
+  let modifyMessage = await Message.updateMany({}, req.body)
+  res.json(modifyMessage)
+})
+
 app.delete('/users', async (req, res) => {
   let deleteUsers = await User.deleteMany()
   res.json(deleteUsers)

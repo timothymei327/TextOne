@@ -11,6 +11,7 @@ const [msgs, setMsgs] = useState([])
 const [users, setUsers] = useState([])
 const [profileImg, setProfileImg] = useState([])
 const [update, setUpdate] = useState('')
+const [modification, setModification] = useState('')
 
   const handleChange = (event) => {
     setMessage( event.target.value );
@@ -24,6 +25,17 @@ const [update, setUpdate] = useState('')
       setMessage('')
       setUpdate(Math.random())
     }
+  }
+
+    const changeModification = (event) => {
+    setModification( event.target.value )
+  }
+
+  const submitModificaiton = async (event) => {
+    event.preventDefault()
+    let res = await axios.put(`${BASE_URL}/messages`, {body: modification})
+    console.log(res)
+    setModification('')
   }
 
     useEffect(() => {
@@ -72,13 +84,21 @@ const [update, setUpdate] = useState('')
         </div>
         <div className="chat-body">
               { msgs ? msgs.map((msg) => (
-                <div>{msg.body}</div>
+                <div>
+                  <div>{msg.body}</div>
+                  <div className="msg-id">{msg._id}</div>
+                </div>
+                
                 )) : '' }
         </div>
         <div className="chat-footer">
         <form>
           <input id="body" type="text" placeholder="Message" onChange={handleChange} onSubmit={sendMessage} value={message}/>
           <button type="submit" onClick={sendMessage}>send</button>
+        </form>
+        <form>
+          <input id="body" type="text" placeholder="Edit Messages" onChange={changeModification} onSubmit={submitModificaiton} value={modification}/>
+          <button type="submit" onClick={submitModificaiton}>submit</button>
         </form>
       </div>
     </div>
