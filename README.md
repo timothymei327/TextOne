@@ -37,11 +37,11 @@ This is a simple messaging website where you will be able to have a conversation
 
 #### Entity Relationship Diagram
 
-![ERD](https://i.imgur.com/ctLooZd.png)
+![ERD](https://i.imgur.com/eGJmNIw.png)
 
 #### Component Heirarchy Diagram
 
-![Component_Heriarchy_Diagram](https://i.imgur.com/NYKIZix.png)
+![Component_Heriarchy_Diagram](https://i.imgur.com/Y18tTK1.png)
 
 ### _Future Updates_
 
