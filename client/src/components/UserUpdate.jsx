@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 
-const BASE_URL = 'http://localhost:3001'
+const BASE_URL = 'https://polar-taiga-21134.herokuapp.com'
 
 
 const UsernameUpdate = () => {

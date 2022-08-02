@@ -5,7 +5,7 @@ import ChatNameUpdate from "./ChatNameUpdate";
 
 const randomWords = require('random-words')
 
-const BASE_URL = 'http://localhost:3001'
+const BASE_URL = 'https://polar-taiga-21134.herokuapp.com'
 
 const ChatPage = () => {
 const [message, setMessage] = useState('')

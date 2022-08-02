@@ -4,7 +4,7 @@ import axios from 'axios';
 import Chats from './Chats'
 import { useEffect } from 'react';
 
-const BASE_URL = 'http://localhost:3001'
+const BASE_URL = 'https://polar-taiga-21134.herokuapp.com'
 
 function ChatForm() {
   let navigate = useNavigate()

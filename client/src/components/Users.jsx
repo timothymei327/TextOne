@@ -2,7 +2,7 @@ import axios from 'axios'
 import { useState } from 'react'
 import { useEffect } from "react"
 
-const BASE_URL = 'http://localhost:3001'
+const BASE_URL = 'https://polar-taiga-21134.herokuapp.com'
 
 const Users = () => {
   const [users, setUsers] = useState([])

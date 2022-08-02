@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import Users from './Users'
 
-const BASE_URL = 'http://localhost:3001'
+const BASE_URL = 'https://polar-taiga-21134.herokuapp.com'
 
 function UserForm() {
   let navigate = useNavigate()
