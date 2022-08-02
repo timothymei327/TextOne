@@ -1,10 +1,10 @@
 const db = require('./db')
 const express = require('express')
-const app = express()
 const cors = require('cors')
+const PORT = process.env.PORT || 3001
 const { User, Chat, Message } = require('./models')
 
-const PORT = process.env.PORT || 3001
+const app = express()
 app.use(cors())
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
