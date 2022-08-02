@@ -9,7 +9,7 @@
     "build": "cd client && rm -rf build && npm install && npm run build"
   },
   "author": "",
-  "license": "MIT",
+  "license": "ISC",
   "dependencies": {
     "cors": "^2.8.5",
     "dotenv": "^16.0.1",
